@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 
 
-public class LoginWindow extends JFrame {
+public class RegisterWindow extends JFrame {
 
 	/**
 	 * 
@@ -38,9 +38,9 @@ public class LoginWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginWindow() {
+	public RegisterWindow() {
 //		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
-		setTitle("Seleccion de acceso");
+		setTitle("EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 465);
 		contentPane = new JPanel();
@@ -55,7 +55,7 @@ public class LoginWindow extends JFrame {
 		buttonGoogle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				LoginWindowGoogle go = new LoginWindowGoogle();
+				RegisterWindowGoogle go = new RegisterWindowGoogle();
 				go.setVisible(true);
 				closeWin();
 				
@@ -91,8 +91,8 @@ public class LoginWindow extends JFrame {
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				LoginWindowFacebook fa = new LoginWindowFacebook();
-				fa.setVisible(true);
+				RegisterWindowFacebook face = new RegisterWindowFacebook();
+				face.setVisible(true);
 				closeWin();
 				
 				
@@ -102,7 +102,7 @@ public class LoginWindow extends JFrame {
 		});
 		contentPane.add(buttonFacebook);
 		
-		JLabel lblSeleccionaCmoQuieres = new JLabel("Selecciona c\u00F3mo quieres acceder:");
+		JLabel lblSeleccionaCmoQuieres = new JLabel("Selecciona c\u00F3mo quieres registrarte:");
 		lblSeleccionaCmoQuieres.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		lblSeleccionaCmoQuieres.setBounds(43, 43, 475, 47);
 		contentPane.add(lblSeleccionaCmoQuieres);
