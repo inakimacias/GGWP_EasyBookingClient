@@ -34,12 +34,13 @@ public class InitialWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public InitialWindow() {
-//		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
+
 		setTitle("EasyBooking");
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+		setResizable(false);
+		setSize(550,400);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 554, 368);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

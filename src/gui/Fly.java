@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +14,10 @@ import java.awt.Color;
 
 public class Fly extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
@@ -40,10 +43,12 @@ public class Fly extends JFrame {
 	 * Create the frame.
 	 */
 	public Fly() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		setBounds(100, 100, 813, 495);
+		setResizable(false);
+		setSize(805,500);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

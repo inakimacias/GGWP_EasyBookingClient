@@ -3,18 +3,13 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
@@ -39,12 +34,13 @@ public class LoginWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginWindow() {
-//		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+
+		setResizable(false);
+		setSize(680,450);
+		setLocationRelativeTo(null);
 		setTitle("Seleccion de acceso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 714, 465);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
