@@ -94,9 +94,8 @@ public class LoginWindowFacebook extends JFrame {
 //		});
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		
-				
+				InitialWindow ini = new InitialWindow();
+				ini.setVisible(true);
 
 			}
 		});

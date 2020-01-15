@@ -37,7 +37,7 @@ public class InitialWindow extends JFrame {
 
 		setTitle("EasyBooking");
 		setResizable(false);
-		setSize(550,400);
+		setSize(600,400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -88,7 +88,7 @@ public class InitialWindow extends JFrame {
 		
 		JLabel lblSeleccionaCmoQuieres = new JLabel("Seleccione la acci\u00F3n que desee realizar:");
 		lblSeleccionaCmoQuieres.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		lblSeleccionaCmoQuieres.setBounds(40, 134, 475, 47);
+		lblSeleccionaCmoQuieres.setBounds(40, 134, 500, 47);
 		contentPane.add(lblSeleccionaCmoQuieres);
 		
 	
