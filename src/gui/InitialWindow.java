@@ -36,6 +36,8 @@ public class InitialWindow extends JFrame {
 	public InitialWindow() {
 //		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
 		setTitle("EasyBooking");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 554, 368);
 		contentPane = new JPanel();
