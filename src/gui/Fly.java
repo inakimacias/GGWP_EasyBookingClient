@@ -84,8 +84,8 @@ public class Fly extends JFrame {
 		btnBuscar.setBounds(531, 148, 115, 29);
 		contentPane.add(btnBuscar);
 		
-		JButton btnReserva = new JButton("Reserva");
-		btnReserva.setBounds(320, 394, 115, 29);
+		JButton btnReserva = new JButton("Reserva y pago");
+		btnReserva.setBounds(295, 395, 160, 29);
 		contentPane.add(btnReserva);
 	}
 }
