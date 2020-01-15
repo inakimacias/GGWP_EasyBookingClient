@@ -41,6 +41,8 @@ public class RegisterWindow extends JFrame {
 	public RegisterWindow() {
 //		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
 		setTitle("EasyBooking");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 465);
 		contentPane = new JPanel();

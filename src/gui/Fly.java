@@ -41,6 +41,8 @@ public class Fly extends JFrame {
 	 */
 	public Fly() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		setBounds(100, 100, 813, 495);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

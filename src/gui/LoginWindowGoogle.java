@@ -47,10 +47,12 @@ public class LoginWindowGoogle extends JFrame {
 
 //		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
 		setBackground(new Color(0, 0, 255));
-		this.setUndecorated(true); // Ventana sin marcos de java predefinidos
+//		this.setUndecorated(true); // Ventana sin marcos de java predefinidos
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		setTitle("EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 344, 347);
+		setBounds(100, 100, 340, 390);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));

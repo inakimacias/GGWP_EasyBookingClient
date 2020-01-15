@@ -40,6 +40,8 @@ public class LoginWindow extends JFrame {
 	 */
 	public LoginWindow() {
 //		setIconImage(Toolkit.getDefaultToolkit().getImage("logo.png"));
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		setTitle("Seleccion de acceso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 465);
