@@ -5,12 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class Fly extends JFrame {
 
@@ -49,17 +55,36 @@ public class Fly extends JFrame {
 		setSize(805,500);
 		setLocationRelativeTo(null);
 		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 193, 761, 200);
+		contentPane.add(scrollPane);
+		
+		String header[] = {"IDVuelo", "Origen", "Destino", "F. Salida", "F. Llegada", "Precio", "A. Vacantes", "Aerolinea"};
+		 String data[][] = { { "1", "Bilbao", "Madrid", "16/01/2020", "17/01/2020", "100", "50", "AirFrance" },
+		             };
+		table = new JTable(data,header);
 		table.setBackground(Color.LIGHT_GRAY);
 		table.setBounds(15, 193, 761, 200);
-		contentPane.add(table);
 		
+//		scrollPane.add(table);
+		
+		
+		  
+		for(int i=0;i<table.getColumnCount();i++)
+		{
+		TableColumn column1 = table.getTableHeader().getColumnModel().getColumn(i);
+		  
+		column1.setHeaderValue(header[i]);
+		} 
+		
+		scrollPane.setViewportView(table);
 		JLabel lblDestino = new JLabel("Destino:");
 		lblDestino.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblDestino.setBounds(408, 91, 88, 32);
@@ -86,6 +111,25 @@ public class Fly extends JFrame {
 		
 		JButton btnReserva = new JButton("Reserva y pago");
 		btnReserva.setBounds(295, 395, 160, 29);
+		btnReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int columns = table.getColumnCount();
+		        String s = "";
+		        for(int col = 0; col < columns; col++)
+		        {
+		            Object o = table.getValueAt(table.getSelectedRow(), col);
+		            s += o.toString();
+		            if(col < columns - 1)
+		                s += ", ";
+		        }
+		        System.out.println(s);
+				
+				
+			}
+
+			
+		});
 		contentPane.add(btnReserva);
+		
 	}
 }
