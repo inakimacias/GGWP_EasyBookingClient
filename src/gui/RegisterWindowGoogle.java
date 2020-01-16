@@ -23,14 +23,8 @@ public class RegisterWindowGoogle extends JFrame {
 	private JTextField textFieldUsuario;
 	private JPasswordField passwordField;
 
-
-
-
-
-
 	public void closeWin() {
 		this.dispose();
-		
 	}
 
 
@@ -86,12 +80,6 @@ public class RegisterWindowGoogle extends JFrame {
 		contentPane.add(passwordField);
 
 		JButton btnRegister = new JButton("Registrarse");
-//		btnEntrar.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				
-//			}
-//		});
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -100,6 +88,7 @@ public class RegisterWindowGoogle extends JFrame {
 
 			}
 		});
+		
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnRegister.setForeground(new Color(0, 102, 153));
 		btnRegister.setBounds(52, 306, 128, 29);
