@@ -86,9 +86,12 @@ public class LoginWindowGoogle extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				controlador.login(labelDNI.getText(), password, "gg");
+//				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+//				controlador.login(labelDNI.getText(), password, "gg");
 
+				Fly main = new Fly();
+				main.setVisible(true);
+				closeWin();
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 19));

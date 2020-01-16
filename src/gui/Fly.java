@@ -13,11 +13,15 @@ import dto.DTOVuelo;
 
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +42,8 @@ public class Fly extends JFrame {
 	private JTextField textDestino;
 	private JTextField textOrigen;
 	public Controller controlador;
-	public List<DTOVuelo> vuelos;
+	private DefaultTableModel modelo = new DefaultTableModel();
+	
 	
 
 	/**
@@ -78,22 +83,19 @@ public class Fly extends JFrame {
 		scrollPane.setBounds(15, 193, 761, 200);
 		contentPane.add(scrollPane);
 		
-		String header[] = {"IDVuelo", "Origen", "Destino", "F. Salida", "F. Llegada", "Precio", "A. Vacantes", "Aerolinea"};
-        String data[][] = { { "1", "Bilbao", "Madrid", "16/01/2020", "17/01/2020", "100", "50", "AirFrance" },};
-        table = new JTable(data,header);
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+        		new Object[][] {
+        			
+        		}, new String[] {
+        				"IDVuelo", "Origen", "Destino", "F. Salida", "F. Llegada", "Precio", "A. Vacantes", "Aerolinea"
+        		}
+        		));
+        
         table.setBackground(Color.LIGHT_GRAY);
         table.setBounds(15, 193, 761, 200);
-		
 //		scrollPane.add(table);
 		
-		
-		  
-		for(int i=0;i<table.getColumnCount();i++)
-		{
-		TableColumn column1 = table.getTableHeader().getColumnModel().getColumn(i);
-		  
-		column1.setHeaderValue(header[i]);
-		} 
 		
 		scrollPane.setViewportView(table);
 		JLabel lblDestino = new JLabel("Destino:");
@@ -123,21 +125,45 @@ public class Fly extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				vuelos = controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
+				borrarTabla();
+				List<DTOVuelo> vuelos = new ArrayList<>();
 				
-//				for (DTOVuelo vuelo : vuelos) {
-//					
-//					for(int i = 0; i < vuelos.size(); i++) {
-//						   data[i][0] = vuelo.getIdVuelo();
-//						   data[i][1] = vuelo.getAeropuertoOrigen();
-//						   data[i][2] = vuelo.getAeropuertoDestino();
-//						   data[i][3] = vuelo.getSalidaFecha();
-//						   data[i][4] = vuelo.getLlegadaFecha();
-//						   data[i][5] = Integer.toString(vuelo.getPrecio());
-//						   data[i][6] = Integer.toString(vuelo.getAsientosVacantes());
-//						   data[i][7] = vuelo.getAerolinea();
-//						}					
-//					}
+//				vuelos = controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
+				DTOVuelo vueloPrueba1 = new DTOVuelo();
+				vueloPrueba1.setIdVuelo("123");
+				vueloPrueba1.setAeropuertoDestino("Madrid");
+				vueloPrueba1.setAeropuertoOrigen("Bilbao");
+				vueloPrueba1.setSalidaFecha("16/01/2020");
+				vueloPrueba1.setLlegadaFecha("20/01/2020");
+				vueloPrueba1.setPrecio(90);
+				vueloPrueba1.setAsientosVacantes(50);
+				vueloPrueba1.setAerolinea("Iberia");
+				
+				DTOVuelo vueloPrueba2 = new DTOVuelo();
+				vueloPrueba2.setIdVuelo("152");
+				vueloPrueba2.setAeropuertoDestino("Bilbao");
+				vueloPrueba2.setAeropuertoOrigen("Barcelona");
+				vueloPrueba2.setSalidaFecha("06/01/2020");
+				vueloPrueba2.setLlegadaFecha("10/01/2020");
+				vueloPrueba2.setPrecio(90);
+				vueloPrueba2.setAsientosVacantes(50);
+				vueloPrueba2.setAerolinea("Iberia");
+
+
+				vuelos.add(vueloPrueba1);
+				vuelos.add(vueloPrueba2);
+				for (DTOVuelo vuelo : vuelos) {
+					if(vuelos.size()!=0 && vuelo.getAeropuertoOrigen().equals(textOrigen.getText()) && vuelo.getAeropuertoDestino().equals(textDestino.getText()) ){
+//						for(int i = 0; i<vuelos.size();i++){
+//							cargarVueloEnTabla(vuelos.get(i));
+//						}
+						cargarVueloEnTabla(vuelo);
+					}
+					else{
+//						JOptionPane.showMessageDialog(new Frame(), "No hay vuelos disponibles. ");
+					}
+				}
+
 			}
 		});
 		contentPane.add(btnBuscar);
@@ -163,4 +189,29 @@ public class Fly extends JFrame {
 		contentPane.add(btnReserva);
 		
 	}
+	
+	private void cargarVueloEnTabla(DTOVuelo a){ // Carga los datos en la tabla
+        modelo = (DefaultTableModel)table.getModel();
+        String c = a.getIdVuelo();
+        String o = a.getAeropuertoOrigen();
+        String d = a.getAeropuertoDestino();
+        String lf = a.getLlegadaFecha();
+        String sh = a.getSalidaFecha();
+        int p = a.getPrecio();
+        int pa = a.getAsientosVacantes();
+        String ar = a.getAerolinea();
+        
+
+        Object[] fila = {c,o,d,lf,sh,p,pa,ar};
+        modelo.addRow(fila);                    
+	}
+	
+	private void borrarTabla(){
+		for (int i = 0; i < table.getRowCount(); i++) {
+	    	modelo.removeRow(i);
+	        i-=1;
+	       
+		}
+	}
+	
 }

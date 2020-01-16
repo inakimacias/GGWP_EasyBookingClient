@@ -23,16 +23,10 @@ public class RegisterWindowFacebook extends JFrame {
 	private JTextField textFielUsuario;
 	private JPasswordField passwordField;
 
-
-
-
-
-
 	public void closeWin() {
 		this.dispose();
 		
 	}
-
 
 	public RegisterWindowFacebook() {
 
@@ -86,12 +80,7 @@ public class RegisterWindowFacebook extends JFrame {
 		contentPane.add(passwordField);
 
 		JButton btnRegister = new JButton("Registrarse");
-//		btnEntrar.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				
-//			}
-//		});
+
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
