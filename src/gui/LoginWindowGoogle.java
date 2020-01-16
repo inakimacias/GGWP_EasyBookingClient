@@ -87,7 +87,7 @@ public class LoginWindowGoogle extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				controlador.login(labelDNI.getText(), password);
+				controlador.login(labelDNI.getText(), password, "gg");
 
 			}
 		});

@@ -87,7 +87,7 @@ public class LoginWindowFacebook extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				controlador.login(labelDNI.getText(), password);
+				controlador.login(labelDNI.getText(), password, "fb");
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 19));
