@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
+
 public class LoginWindowFacebook extends JFrame {
 
 	/**
@@ -22,17 +24,11 @@ public class LoginWindowFacebook extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
 	private JPasswordField passwordField;
-
-
-
-
-
+	public Controller controlador;
 
 	public void closeWin() {
-		this.dispose();
-		
+		this.dispose();	
 	}
-
 
 	public LoginWindowFacebook() {
 
@@ -42,7 +38,7 @@ public class LoginWindowFacebook extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle("EasyBooking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -86,17 +82,12 @@ public class LoginWindowFacebook extends JFrame {
 		contentPane.add(passwordField);
 
 		JButton btnEntrar = new JButton("Entrar");
-//		btnEntrar.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				
-//			}
-//		});
+
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InitialWindow ini = new InitialWindow();
-				ini.setVisible(true);
-
+				
+				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+				controlador.login(labelDNI.getText(), password);
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -107,8 +98,8 @@ public class LoginWindowFacebook extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			LoginWindow log = new LoginWindow();
-			log.setVisible(true);
+				LoginWindow log = new LoginWindow();
+				log.setVisible(true);
 				closeWin();
 			}
 		});
