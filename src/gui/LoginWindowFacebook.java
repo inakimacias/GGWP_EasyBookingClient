@@ -4,8 +4,10 @@ import javax.swing.JPanel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -14,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 import controller.Controller;
+import dto.DTOUsuario;
 
 public class LoginWindowFacebook extends JFrame {
 
@@ -86,11 +89,19 @@ public class LoginWindowFacebook extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-//				controlador.login(labelDNI.getText(), password, "fb");
-				Fly main = new Fly();
-				main.setVisible(true);
-				closeWin();
+				DTOUsuario usuario = null;
+				
+				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+				
+				usuario = controlador.login(labelDNI.getText(), password, "gg");
+				
+				if(usuario != null) {
+					Fly main = new Fly(usuario);
+					main.setVisible(true);
+					closeWin();
+				}{
+					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
+				}
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 19));

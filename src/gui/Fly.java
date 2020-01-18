@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import controller.Controller;
+import dto.DTOUsuario;
 import dto.DTOVuelo;
 
 import javax.swing.JTable;
@@ -49,23 +50,23 @@ public class Fly extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Fly frame = new Fly();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Fly frame = new Fly();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Fly() {
+	public Fly(DTOUsuario usuario) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -172,10 +173,10 @@ public class Fly extends JFrame {
 		btnReserva.setBounds(295, 395, 160, 29);
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(table.getValueAt(table.getSelectedRow(), 0));
-				controlador.reservar((String)table.getValueAt(table.getSelectedRow(), 0),(String)table.getValueAt(table.getSelectedRow(), 1));
-				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
-				
+//				System.out.println(table.getValueAt(table.getSelectedRow(), 0));
+//				controlador.reservar((String)table.getValueAt(table.getSelectedRow(), 0),(String)table.getValueAt(table.getSelectedRow(), 1));
+//				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
+//				
 			}	
 		});
 		contentPane.add(btnReserva);

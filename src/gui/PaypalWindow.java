@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
+import dto.DTOUsuario;
+
 public class PaypalWindow extends JFrame {
 
 	/**
@@ -34,7 +36,7 @@ public class PaypalWindow extends JFrame {
 	}
 
 
-	public PaypalWindow() {
+	public PaypalWindow(DTOUsuario usuario) {
 
 		setBackground(new Color(0, 0, 255));
 		setResizable(false);
@@ -103,7 +105,7 @@ public class PaypalWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			PayWindow pay = new PayWindow();
+			PayWindow pay = new PayWindow(usuario);
 			pay.setVisible(true);
 				closeWin();
 			}

@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dto.DTOUsuario;
+
 import javax.swing.JTextField;
 
 
@@ -39,7 +42,7 @@ public class DataWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DataWindow() {
+	public DataWindow(DTOUsuario usuario) {
 		
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -60,7 +63,7 @@ public class DataWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fly fly = new Fly();
+				Fly fly = new Fly(usuario);
 				fly.setVisible(true);
 				closeWin();
 			}
@@ -78,7 +81,7 @@ public class DataWindow extends JFrame {
 		buttonContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				PayWindow pay = new PayWindow();
+				PayWindow pay = new PayWindow(usuario);
 				pay.setVisible(true);
 				closeWin();
 				

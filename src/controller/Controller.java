@@ -3,6 +3,7 @@ package controller;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import dto.DTOUsuario;
 import dto.DTOVuelo;
 import remote.ServiceLocator;
 
@@ -13,12 +14,12 @@ public class Controller {
 		this.serviceLocator = serviceLocator; 
 	}
 	
-	public boolean login(String email, String password, String tipo) {
+	public DTOUsuario login(String email, String password, String tipo) {
 		try {
 			return this.serviceLocator.getService().login(email, password, tipo);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -32,11 +33,7 @@ public class Controller {
 	}
 	
 	public void reservar(String idVuelo) {
-		try{
-			serviceLocator.getService().reservar(idVuelo);
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
+		
 	}
 	
 }
