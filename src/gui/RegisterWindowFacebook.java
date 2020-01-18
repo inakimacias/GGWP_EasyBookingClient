@@ -94,7 +94,7 @@ public class RegisterWindowFacebook extends JFrame {
 
 				if(controlador.registarse(textFielUsuario.getText(), password, "fb")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-					InitialWindow main = new InitialWindow();
+					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
 					closeWin();
 				} else {

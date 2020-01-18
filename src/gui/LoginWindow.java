@@ -12,10 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.Controller;
+
 public class LoginWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Controller controlador;
 
 	public void closeWin() {
 		this.dispose();
@@ -55,7 +58,7 @@ public class LoginWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InitialWindow ini = new InitialWindow();
+				InitialWindow ini = new InitialWindow(controlador);
 				ini.setVisible(true);
 				closeWin();
 			}

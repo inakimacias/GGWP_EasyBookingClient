@@ -12,11 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.Controller;
+
 public class InitialWindow extends JFrame {
 
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Controller controlador = null;
 
 	public void closeWin() {
 		this.dispose();		
@@ -25,7 +28,18 @@ public class InitialWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InitialWindow() {
+	
+	public InitialWindow(Controller controller) {
+		this.controlador = controller;
+		initComponents();	
+		
+		this.setVisible(true);
+		
+	}
+	
+	
+	
+	public void initComponents() {
 
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -80,4 +94,12 @@ public class InitialWindow extends JFrame {
 		contentPane.add(lblSeleccionaCmoQuieres);
 
 	}
+	
+	public Controller getController() {
+		return controlador;
+	}
+	public void setController(Controller controlador) {
+		this.controlador = controlador;
+	}
+	
 }

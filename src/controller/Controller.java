@@ -5,13 +5,17 @@ import java.util.List;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
+import gui.InitialWindow;
 import remote.ServiceLocator;
 
 public class Controller {
+	
 	public ServiceLocator serviceLocator;
 	
-	public Controller(ServiceLocator serviceLocator) {
-		this.serviceLocator = serviceLocator; 
+	public Controller(String[] args) throws RemoteException {
+		serviceLocator = new ServiceLocator();
+		serviceLocator.setService(args);
+		new InitialWindow(this);
 	}
 	
 	public DTOUsuario login(String email, String password, String tipo) {

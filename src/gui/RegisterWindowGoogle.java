@@ -91,7 +91,7 @@ public class RegisterWindowGoogle extends JFrame {
 				
 				if(controlador.registarse(textFieldUsuario.getText(), password, "gg")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-					InitialWindow main = new InitialWindow();
+					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
 					closeWin();
 				} else {
