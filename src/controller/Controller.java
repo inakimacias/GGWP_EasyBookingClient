@@ -31,4 +31,12 @@ public class Controller {
 		}
 	}
 	
+	public void reservar(String idVuelo) {
+		try{
+			serviceLocator.getService().reservar(idVuelo);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+	}
+	
 }

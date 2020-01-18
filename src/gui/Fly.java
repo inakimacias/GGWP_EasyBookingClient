@@ -172,19 +172,11 @@ public class Fly extends JFrame {
 		btnReserva.setBounds(295, 395, 160, 29);
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int columns = table.getColumnCount();
-		        String s = "";
-		        for(int col = 0; col < columns; col++)
-		        {
-		            Object o = table.getValueAt(table.getSelectedRow(), col);
-		            s += o.toString();
-		            if(col < columns - 1)
-		                s += ", ";
-		        }
-		        System.out.println(s);
+				System.out.println(table.getValueAt(table.getSelectedRow(), 0));
+				controlador.reservar((String)table.getValueAt(table.getSelectedRow(), 0),(String)table.getValueAt(table.getSelectedRow(), 1));
+				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
 				
-			}
-			
+			}	
 		});
 		contentPane.add(btnReserva);
 		
