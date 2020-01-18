@@ -4,12 +4,12 @@
 	<property name="src.dir" location="src"/>
    	<property name="bind.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
-	<property name="rmiregistry.port" value="1099"/>
-	<property name="rmiregistry.IP" value="127.0.0.1"/> 
-	<property name="server.Name1" value="EBServer"/>
+	<property name="server.port" value="1099"/>
+	<property name="server.IP" value="127.0.0.1"/> 
+	<property name="server.Name" value="EasyBooking"/>
 	<property name="policy.file" location="security/java.policy"/>	
 
-	<path id="classpath">
+	<path id="full.classpath">
         <fileset dir="${lib.dir}">
             <include name="**/*.jar"/>
         </fileset>
@@ -23,11 +23,11 @@
 	<target name="1.compile" description="Builds the project">
 		<delete dir="${build.dir}"/>
 		<mkdir dir="${build.dir}"/>
-		<javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" deprecation="true" fork="true" includeantruntime="no"/>
+		<javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="full.classpath" deprecation="true" fork="true" includeantruntime="no"/>
     </target>
     
 	<target name="client" depends="1.compile"  description="Runs Client program">
-		<java classname="controller.Controller" classpathref="classpath" fork="true">
+		<java classname="controller.Controller" classpathref="full.classpath" fork="true">
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
         	<arg value="${rmiregistry.IP}"/> 
 	 		<arg value="${rmiregistry.port}"/> 
