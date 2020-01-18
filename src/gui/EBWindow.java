@@ -4,8 +4,10 @@ import javax.swing.JPanel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -13,7 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
 import dto.DTOUsuario;
+import dto.DTOVuelo;
 
 public class EBWindow extends JFrame {
 
@@ -24,11 +28,7 @@ public class EBWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNumero;
 	private JPasswordField passwordField;
-
-
-
-
-
+	private Controller controlador;
 
 	public void closeWin() {
 		this.dispose();
@@ -36,7 +36,7 @@ public class EBWindow extends JFrame {
 	}
 
 
-	public EBWindow(DTOUsuario usuario) {
+	public EBWindow(DTOUsuario usuario,DTOVuelo vuelo,String nombres, String tipo) {
 
 		setBackground(new Color(0, 0, 255));
 		setResizable(false);
@@ -92,7 +92,8 @@ public class EBWindow extends JFrame {
 		btnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		
+				controlador.reservar(usuario,vuelo,nombres, tipo,"entidadbancaria");
+				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
 				
 
 			}
@@ -105,7 +106,7 @@ public class EBWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			PayWindow pay = new PayWindow(usuario);
+			PayWindow pay = new PayWindow(usuario,vuelo,nombres, tipo);
 			pay.setVisible(true);
 				closeWin();
 			}

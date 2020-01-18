@@ -93,10 +93,10 @@ public class LoginWindowFacebook extends JFrame {
 				
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
 				
-				usuario = controlador.login(labelDNI.getText(), password, "gg");
+				usuario = controlador.login(labelDNI.getText(), password, "fb");
 				
 				if(usuario != null) {
-					Fly main = new Fly(usuario);
+					Fly main = new Fly(usuario, "facebook");
 					main.setVisible(true);
 					closeWin();
 				}{

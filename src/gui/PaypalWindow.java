@@ -4,8 +4,10 @@ import javax.swing.JPanel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -13,7 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
 import dto.DTOUsuario;
+import dto.DTOVuelo;
 
 public class PaypalWindow extends JFrame {
 
@@ -24,10 +28,7 @@ public class PaypalWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldMail;
 	private JPasswordField passwordField;
-
-
-
-
+	private Controller controlador;
 
 
 	public void closeWin() {
@@ -36,7 +37,7 @@ public class PaypalWindow extends JFrame {
 	}
 
 
-	public PaypalWindow(DTOUsuario usuario) {
+	public PaypalWindow(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipo) {
 
 		setBackground(new Color(0, 0, 255));
 		setResizable(false);
@@ -90,10 +91,10 @@ public class PaypalWindow extends JFrame {
 		JButton btnPagar = new JButton("Pagar");
 
 		btnPagar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {		
 				
-		
-				
+				controlador.reservar(usuario,vuelo,nombres,tipo,"paypal");
+				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");		
 
 			}
 		});
@@ -105,7 +106,7 @@ public class PaypalWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			PayWindow pay = new PayWindow(usuario);
+			PayWindow pay = new PayWindow(usuario,vuelo,nombres,tipo);
 			pay.setVisible(true);
 				closeWin();
 			}

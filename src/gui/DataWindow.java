@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dto.DTOUsuario;
+import dto.DTOVuelo;
 
 import javax.swing.JTextField;
 
@@ -35,14 +36,12 @@ public class DataWindow extends JFrame {
 
 	public void closeWin() {
 		this.dispose();
-		
-		
 	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public DataWindow(DTOUsuario usuario) {
+	public DataWindow(DTOUsuario usuario, DTOVuelo vuelo,String tipo) {
 		
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -56,14 +55,10 @@ public class DataWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-
-		
-
-		
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fly fly = new Fly(usuario);
+				Fly fly = new Fly(usuario,tipo);
 				fly.setVisible(true);
 				closeWin();
 			}
@@ -74,23 +69,7 @@ public class DataWindow extends JFrame {
 		buttonAtras.setBounds(15, 366, 140, 30);
 		contentPane.add(buttonAtras);
 		
-		JButton buttonContinuar = new JButton("Continuar");
-		buttonContinuar.setForeground(SystemColor.activeCaption);
-		buttonContinuar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		buttonContinuar.setBounds(519, 366, 140, 30);
-		buttonContinuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				PayWindow pay = new PayWindow(usuario);
-				pay.setVisible(true);
-				closeWin();
-				
-				
-			}
-
-			
-		});
-		contentPane.add(buttonContinuar);
+		
 		
 		JLabel lblSeleccionaCmoQuieres = new JLabel("Introduzca los datos de los pasajeros:");
 		lblSeleccionaCmoQuieres.setFont(new Font("Times New Roman", Font.PLAIN, 30));
@@ -147,6 +126,41 @@ public class DataWindow extends JFrame {
 		textField_4.setBounds(138, 259, 282, 26);
 		contentPane.add(textField_4);
 		
+		JButton buttonContinuar = new JButton("Continuar");
+		buttonContinuar.setForeground(SystemColor.activeCaption);
+		buttonContinuar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonContinuar.setBounds(519, 366, 140, 30);
+		buttonContinuar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String nombres = "";
+				if(!textField.getText().equals(null)) {
+					nombres = textField.getText();
+					if(!textField_1.getText().equals(null)) {
+						nombres = nombres + ";" + textField_1.getText();
+						if(!textField_2.getText().equals(null)) {
+							nombres = nombres + ";" + textField_2.getText();
+							if(!textField_3.getText().equals(null)) {
+								nombres = nombres + ";" + textField_3.getText();
+								if(!textField_4.getText().equals(null)) {
+									nombres = nombres + ";" + textField_4.getText();
+								}
+							}
+						}
+					}
+				}
+				 
+				
+				PayWindow pay = new PayWindow(usuario,vuelo,nombres,tipo);
+				pay.setVisible(true);
+				closeWin();
+				
+				
+			}
+
+			
+		});
+		contentPane.add(buttonContinuar);
 	
 	}
 }

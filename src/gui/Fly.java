@@ -50,23 +50,14 @@ public class Fly extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Fly frame = new Fly();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public void closeWin() {
+		this.dispose();
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Fly(DTOUsuario usuario) {
+	public Fly(DTOUsuario usuario,String tipo) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -130,38 +121,40 @@ public class Fly extends JFrame {
 				List<DTOVuelo> vuelos = new ArrayList<>();
 				
 //				vuelos = controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
-				DTOVuelo vueloPrueba1 = new DTOVuelo();
-				vueloPrueba1.setIdVuelo("123");
-				vueloPrueba1.setAeropuertoDestino("Madrid");
-				vueloPrueba1.setAeropuertoOrigen("Bilbao");
-				vueloPrueba1.setSalidaFecha("16/01/2020");
-				vueloPrueba1.setLlegadaFecha("20/01/2020");
-				vueloPrueba1.setPrecio(90);
-				vueloPrueba1.setAsientosVacantes(50);
-				vueloPrueba1.setAerolinea("Iberia");
+//				DTOVuelo vueloPrueba1 = new DTOVuelo();
+//				vueloPrueba1.setIdVuelo("123");
+//				vueloPrueba1.setAeropuertoDestino("Madrid");
+//				vueloPrueba1.setAeropuertoOrigen("Bilbao");
+//				vueloPrueba1.setSalidaFecha("16/01/2020");
+//				vueloPrueba1.setLlegadaFecha("20/01/2020");
+//				vueloPrueba1.setPrecio(90);
+//				vueloPrueba1.setAsientosVacantes(50);
+//				vueloPrueba1.setAerolinea("Iberia");
+//				
+//				DTOVuelo vueloPrueba2 = new DTOVuelo();
+//				vueloPrueba2.setIdVuelo("152");
+//				vueloPrueba2.setAeropuertoDestino("Bilbao");
+//				vueloPrueba2.setAeropuertoOrigen("Barcelona");
+//				vueloPrueba2.setSalidaFecha("06/01/2020");
+//				vueloPrueba2.setLlegadaFecha("10/01/2020");
+//				vueloPrueba2.setPrecio(90);
+//				vueloPrueba2.setAsientosVacantes(50);
+//				vueloPrueba2.setAerolinea("Iberia");
+//
+//
+//				vuelos.add(vueloPrueba1);
+//				vuelos.add(vueloPrueba2);
 				
-				DTOVuelo vueloPrueba2 = new DTOVuelo();
-				vueloPrueba2.setIdVuelo("152");
-				vueloPrueba2.setAeropuertoDestino("Bilbao");
-				vueloPrueba2.setAeropuertoOrigen("Barcelona");
-				vueloPrueba2.setSalidaFecha("06/01/2020");
-				vueloPrueba2.setLlegadaFecha("10/01/2020");
-				vueloPrueba2.setPrecio(90);
-				vueloPrueba2.setAsientosVacantes(50);
-				vueloPrueba2.setAerolinea("Iberia");
-
-
-				vuelos.add(vueloPrueba1);
-				vuelos.add(vueloPrueba2);
+				vuelos = (List<DTOVuelo>)controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
+				
 				for (DTOVuelo vuelo : vuelos) {
 					if(vuelos.size()!=0 && vuelo.getAeropuertoOrigen().equals(textOrigen.getText()) && vuelo.getAeropuertoDestino().equals(textDestino.getText()) ){
-//						for(int i = 0; i<vuelos.size();i++){
-//							cargarVueloEnTabla(vuelos.get(i));
-//						}
-						cargarVueloEnTabla(vuelo);
+						for(int i = 0; i<vuelos.size();i++){
+							cargarVueloEnTabla(vuelos.get(i));
+						}
 					}
 					else{
-//						JOptionPane.showMessageDialog(new Frame(), "No hay vuelos disponibles. ");
+						JOptionPane.showMessageDialog(new Frame(), "No hay vuelos disponibles. ");
 					}
 				}
 
@@ -173,10 +166,22 @@ public class Fly extends JFrame {
 		btnReserva.setBounds(295, 395, 160, 29);
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				System.out.println(table.getValueAt(table.getSelectedRow(), 0));
-//				controlador.reservar((String)table.getValueAt(table.getSelectedRow(), 0),(String)table.getValueAt(table.getSelectedRow(), 1));
-//				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
-//				
+				
+				DTOVuelo vuelo = new DTOVuelo();
+				
+				vuelo.setIdVuelo((String)table.getValueAt(table.getSelectedRow(), 0));
+				vuelo.setAeropuertoOrigen((String)table.getValueAt(table.getSelectedRow(), 1));
+				vuelo.setAeropuertoDestino((String)table.getValueAt(table.getSelectedRow(), 2));
+				vuelo.setSalidaFecha((String)table.getValueAt(table.getSelectedRow(), 3));
+				vuelo.setLlegadaFecha((String)table.getValueAt(table.getSelectedRow(), 4));
+				vuelo.setPrecio((Integer)table.getValueAt(table.getSelectedRow(), 5));
+				vuelo.setAsientosVacantes((Integer)table.getValueAt(table.getSelectedRow(), 6));
+				vuelo.setAerolinea((String)table.getValueAt(table.getSelectedRow(), 7));
+				
+				DataWindow dataW = new DataWindow(usuario,vuelo,tipo);
+				dataW.setVisible(true);
+				closeWin();
+				
 			}	
 		});
 		contentPane.add(btnReserva);

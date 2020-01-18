@@ -32,8 +32,21 @@ public class Controller {
 		}
 	}
 	
-	public void reservar(String idVuelo) {
-		
+	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipo,String metodo) {
+		try {
+			this.serviceLocator.getService().reservar(usuario, vuelo, nombres, tipo, metodo);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+		}
+	}
+	
+	public boolean registarse(String usuario, String contraseña, String tipo) {
+		try {
+			return this.serviceLocator.getService().registrarse(usuario, contraseña, tipo);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+			return false;
+		}
 	}
 	
 }

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dto.DTOUsuario;
+import dto.DTOVuelo;
 
 
 
@@ -35,7 +36,7 @@ public class PayWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PayWindow(DTOUsuario usuario) {
+	public PayWindow(DTOUsuario usuario,DTOVuelo vuelo, String nombres, String tipo) {
 		
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -55,7 +56,7 @@ public class PayWindow extends JFrame {
 		buttonPaypal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				PaypalWindow pal = new PaypalWindow(usuario);
+				PaypalWindow pal = new PaypalWindow(usuario,vuelo, nombres, tipo);
 				pal.setVisible(true);
 				closeWin();
 				
@@ -73,7 +74,7 @@ public class PayWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DataWindow dat = new DataWindow(usuario);
+				DataWindow dat = new DataWindow(usuario,vuelo,tipo);
 				dat.setVisible(true);
 				closeWin();
 			}
@@ -91,13 +92,10 @@ public class PayWindow extends JFrame {
 		buttonEB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				EBWindow eb = new EBWindow(usuario);
+				EBWindow eb = new EBWindow(usuario,vuelo,nombres,tipo);
 				eb.setVisible(true);
-				closeWin();
-				
-				
+				closeWin();	
 			}
-
 			
 		});
 		contentPane.add(buttonEB);

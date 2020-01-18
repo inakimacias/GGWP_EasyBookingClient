@@ -4,14 +4,19 @@ import javax.swing.JPanel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+
+import controller.Controller;
+import dto.DTOUsuario;
 
 public class RegisterWindowFacebook extends JFrame {
 
@@ -22,6 +27,7 @@ public class RegisterWindowFacebook extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFielUsuario;
 	private JPasswordField passwordField;
+	private Controller controlador;
 
 	public void closeWin() {
 		this.dispose();
@@ -83,9 +89,18 @@ public class RegisterWindowFacebook extends JFrame {
 
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		
-				
+
+				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+
+				if(controlador.registarse(textFielUsuario.getText(), password, "fb")) {
+					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
+					InitialWindow main = new InitialWindow();
+					main.setVisible(true);
+					closeWin();
+				} else {
+					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
+				}
+						
 
 			}
 		});

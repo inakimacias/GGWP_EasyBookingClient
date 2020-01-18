@@ -96,7 +96,7 @@ public class LoginWindowGoogle extends JFrame {
 				usuario = controlador.login(labelDNI.getText(), password, "gg");
 
 				if(usuario != null) {
-					Fly main = new Fly(usuario);
+					Fly main = new Fly(usuario,"google");
 					main.setVisible(true);
 					closeWin();
 				}{
