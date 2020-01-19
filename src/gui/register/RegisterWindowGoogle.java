@@ -86,8 +86,11 @@ public class RegisterWindowGoogle extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				
-				if(controlador.registarse(textFieldUsuario.getText(), password, "google")) {
+				System.out.println(password);
+				String s = controlador.registarse(textFieldUsuario.getText(), password, "google");
+				System.out.println(s);
+				if(s.split(";")[0]=="true") {
+					System.out.println("HOLA");
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);

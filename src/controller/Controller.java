@@ -5,7 +5,6 @@ import java.util.List;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
-import gui.InitialWindow;
 import remote.ServiceLocator;
 
 public class Controller {
@@ -15,10 +14,11 @@ public class Controller {
 	public Controller(String[] args) throws RemoteException {
 		serviceLocator = new ServiceLocator();
 		serviceLocator.setService(args);
-		new InitialWindow(this);
+		System.out.println("Se ha creado un controller con "+args.toString());
 	}
 	
 	public static void main(String[] args)throws RemoteException {
+		System.out.println("Se va a crear un controller");
     	new Controller(args);
 	}
 
@@ -48,13 +48,19 @@ public class Controller {
 		}
 	}
 	
-	public boolean registarse(String usuario, String contraseña, String tipo) {
+	public String registarse(String usuario, String contrasena, String tipo) {
+		System.out.println("Recibido usuario:"+usuario+" pass:"+contrasena);
+		String s = "hi";
 		try {
-			return this.serviceLocator.getService().registrarse(usuario, contraseña, tipo);
+			System.out.println("Entro al try");
+			s = this.serviceLocator.getService().registrarse(usuario, contrasena, tipo);
+			System.out.println(s);
+			System.out.println("Salgo del try");
+			return s;
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
-			return false;
 		}
+		return s;
 	}
 	
 }

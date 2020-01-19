@@ -88,8 +88,11 @@ public class RegisterWindowFacebook extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-
-				if(controlador.registarse(textFielUsuario.getText(), password, "facebook")) {
+				
+				String s = controlador.registarse(textFielUsuario.getText(), password, "facebook");
+				System.out.println(s);
+				
+				if(s.split(";")[0]=="true") {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
