@@ -3,6 +3,8 @@ package controller;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dto.DTOInformePago;
+import dto.DTOReserva;
 import dto.DTOUsuario;
 import dto.DTOVuelo;
 
@@ -57,4 +59,23 @@ public class Controller {
 		return s;
 	}
 	
+	public ArrayList<DTOReserva> buscarReservas(DTOUsuario usuario){
+		ArrayList<DTOReserva> adtor = null;
+		try {
+			adtor = this.serviceLocator.getService().buscarReservas(usuario);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+		}
+		return adtor;
+	}
+	
+	public DTOInformePago buscarInforme(DTOReserva reserva) {
+		DTOInformePago i = null;
+		try {
+			i = this.serviceLocator.getService().buscarInforme(reserva);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+		}
+		return i;
+	}
 }
