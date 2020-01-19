@@ -24,10 +24,7 @@ public class LoginWindow extends JFrame {
 	public void closeWin() {
 		this.dispose();
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public LoginWindow() {
 
 		setResizable(false);

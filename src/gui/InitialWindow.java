@@ -26,20 +26,13 @@ public class InitialWindow extends JFrame {
 	public void closeWin() {
 		this.dispose();		
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	
 	public InitialWindow(Controller controller) {
 		this.controlador = controller;
 		initComponents();	
-		
 		this.setVisible(true);
 		
 	}
-	
-	
 	
 	public void initComponents() {
 

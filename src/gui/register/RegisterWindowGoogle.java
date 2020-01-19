@@ -20,9 +20,6 @@ import gui.InitialWindow;
 
 public class RegisterWindowGoogle extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldUsuario;
@@ -74,7 +71,7 @@ public class RegisterWindowGoogle extends JFrame {
 		textFieldUsuario.setBounds(52, 140, 179, 25);
 		contentPane.add(textFieldUsuario);
 
-		JLabel labelContrasena = new JLabel("Contrase\u00F1a:");
+		JLabel labelContrasena = new JLabel("Contrasena:");
 		labelContrasena.setForeground(new Color(0, 102, 153));
 		labelContrasena.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelContrasena.setBounds(52, 182, 179, 25);
@@ -90,7 +87,7 @@ public class RegisterWindowGoogle extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
 				
-				if(controlador.registarse(textFieldUsuario.getText(), password, "gg")) {
+				if(controlador.registarse(textFieldUsuario.getText(), password, "google")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);

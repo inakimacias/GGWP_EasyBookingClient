@@ -22,9 +22,6 @@ import javax.swing.JTextField;
 
 public class DataWindow extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -33,15 +30,10 @@ public class DataWindow extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	
-
-
 	public void closeWin() {
 		this.dispose();
 	}
 	
-	/**
-	 * Create the frame.
-	 */
 	public DataWindow(DTOUsuario usuario, DTOVuelo vuelo,String tipo) {
 		
 		setTitle("EasyBooking");
@@ -69,8 +61,6 @@ public class DataWindow extends JFrame {
 		buttonAtras.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		buttonAtras.setBounds(15, 366, 140, 30);
 		contentPane.add(buttonAtras);
-		
-		
 		
 		JLabel lblSeleccionaCmoQuieres = new JLabel("Introduzca los datos de los pasajeros:");
 		lblSeleccionaCmoQuieres.setFont(new Font("Times New Roman", Font.PLAIN, 30));
@@ -149,19 +139,12 @@ public class DataWindow extends JFrame {
 							}
 						}
 					}
+					PayWindow pay = new PayWindow(usuario,vuelo,nombres,tipo);
+					pay.setVisible(true);
+					closeWin();
 				}
-				 
-				
-				PayWindow pay = new PayWindow(usuario,vuelo,nombres,tipo);
-				pay.setVisible(true);
-				closeWin();
-				
-				
 			}
-
-			
 		});
 		contentPane.add(buttonContinuar);
-	
 	}
 }

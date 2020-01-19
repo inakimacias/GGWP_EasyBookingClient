@@ -89,12 +89,9 @@ public class LoginWindowGoogle extends JFrame {
 
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				DTOUsuario usuario = null;
-
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-
-				usuario = controlador.login(labelDNI.getText(), password, "gg");
+				usuario = controlador.login(labelDNI.getText(), password, "google");
 
 				if(usuario != null) {
 					Fly main = new Fly(usuario,"google");

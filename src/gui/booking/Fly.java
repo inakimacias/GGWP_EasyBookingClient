@@ -138,7 +138,7 @@ public class Fly extends JFrame {
 //				vuelos.add(vueloPrueba1);
 //				vuelos.add(vueloPrueba2);
 				
-				vuelos = (List<DTOVuelo>)controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
+				vuelos = controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
 				
 				for (DTOVuelo vuelo : vuelos) {
 					if(vuelos.size()!=0 && vuelo.getAeropuertoOrigen().equals(textOrigen.getText()) && vuelo.getAeropuertoDestino().equals(textDestino.getText()) ){
@@ -150,7 +150,6 @@ public class Fly extends JFrame {
 						JOptionPane.showMessageDialog(new Frame(), "No hay vuelos disponibles. ");
 					}
 				}
-
 			}
 		});
 		contentPane.add(btnBuscar);
@@ -161,7 +160,6 @@ public class Fly extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				DTOVuelo vuelo = new DTOVuelo();
-				
 				vuelo.setIdVuelo((String)table.getValueAt(table.getSelectedRow(), 0));
 				vuelo.setAeropuertoOrigen((String)table.getValueAt(table.getSelectedRow(), 1));
 				vuelo.setAeropuertoDestino((String)table.getValueAt(table.getSelectedRow(), 2));
@@ -174,7 +172,6 @@ public class Fly extends JFrame {
 				DataWindow dataW = new DataWindow(usuario,vuelo,tipo);
 				dataW.setVisible(true);
 				closeWin();
-				
 			}	
 		});
 		contentPane.add(btnReserva);
@@ -183,17 +180,17 @@ public class Fly extends JFrame {
 	
 	private void cargarVueloEnTabla(DTOVuelo a){ // Carga los datos en la tabla
         modelo = (DefaultTableModel)table.getModel();
-        String c = a.getIdVuelo();
+        String id = a.getIdVuelo();
         String o = a.getAeropuertoOrigen();
         String d = a.getAeropuertoDestino();
-        String lf = a.getLlegadaFecha();
-        String sh = a.getSalidaFecha();
+        String fl = a.getLlegadaFecha();
+        String fs = a.getSalidaFecha();
         int p = a.getPrecio();
-        int pa = a.getAsientosVacantes();
-        String ar = a.getAerolinea();
+        int v = a.getAsientosVacantes();
+        String aer = a.getAerolinea();
         
 
-        Object[] fila = {c,o,d,lf,sh,p,pa,ar};
+        Object[] fila = {id,o,d,fl,fs,p,v,aer};
         modelo.addRow(fila);                    
 	}
 	

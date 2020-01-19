@@ -19,24 +19,14 @@ import gui.InitialWindow;
 
 public class RegisterWindow extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controller controlador;
 	
-
-
 	public void closeWin() {
 		this.dispose();
-		
-		
 	}
 	
-	/**
-	 * Create the frame.
-	 */
 	public RegisterWindow() {
 		
 		setTitle("EasyBooking");
@@ -51,20 +41,13 @@ public class RegisterWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-
-		
 		JButton buttonGoogle = new JButton("GOOGLE");
 		buttonGoogle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				RegisterWindowGoogle go = new RegisterWindowGoogle();
 				go.setVisible(true);
 				closeWin();
-				
-				
 			}
-
-			
 		});
 		buttonGoogle.setForeground(SystemColor.activeCaption);
 		buttonGoogle.setForeground(new Color(0, 102, 153));
@@ -92,15 +75,10 @@ public class RegisterWindow extends JFrame {
 		buttonFacebook.setBounds(360, 132, 219, 136);
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				RegisterWindowFacebook face = new RegisterWindowFacebook();
 				face.setVisible(true);
 				closeWin();
-				
-				
 			}
-
-			
 		});
 		contentPane.add(buttonFacebook);
 		

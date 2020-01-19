@@ -20,9 +20,6 @@ import gui.InitialWindow;
 
 public class RegisterWindowFacebook extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFielUsuario;
@@ -92,7 +89,7 @@ public class RegisterWindowFacebook extends JFrame {
 
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
 
-				if(controlador.registarse(textFielUsuario.getText(), password, "fb")) {
+				if(controlador.registarse(textFielUsuario.getText(), password, "facebook")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
