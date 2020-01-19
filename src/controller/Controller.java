@@ -1,11 +1,10 @@
 package controller;
 
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.ArrayList;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
-import remote.ServiceLocator;
 
 public class Controller {
 	
@@ -14,7 +13,6 @@ public class Controller {
 	public Controller(String[] args) throws RemoteException {
 		serviceLocator = new ServiceLocator();
 		serviceLocator.setService(args);
-		System.out.println("Se ha creado un controller con "+args.toString());
 	}
 	
 	public static void main(String[] args)throws RemoteException {
@@ -23,15 +21,16 @@ public class Controller {
 	}
 
 	public DTOUsuario login(String email, String password, String tipo) {
+		DTOUsuario u = null;
 		try {
-			return this.serviceLocator.getService().login(email, password, tipo);
+			u = this.serviceLocator.getService().login(email, password, tipo);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
-			return null;
 		}
+		return u;
 	}
 	
-	public List<DTOVuelo> buscarVuelo(String origen, String destino) {
+	public ArrayList<DTOVuelo> buscarVuelo(String origen, String destino) {
 		try {
 			return this.serviceLocator.getService().buscarVuelo(origen, destino);
 		} catch (RemoteException e) {
@@ -40,23 +39,18 @@ public class Controller {
 		}
 	}
 	
-	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipo,String metodo) {
+	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipoBanco,String idCuenta) {
 		try {
-			this.serviceLocator.getService().reservar(usuario, vuelo, nombres, tipo, metodo);
+			this.serviceLocator.getService().reservar(usuario, vuelo, nombres, tipoBanco, idCuenta);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
 		}
 	}
 	
 	public String registarse(String usuario, String contrasena, String tipo) {
-		System.out.println("Recibido usuario:"+usuario+" pass:"+contrasena);
 		String s = "hi";
 		try {
-			System.out.println("Entro al try");
 			s = this.serviceLocator.getService().registrarse(usuario, contrasena, tipo);
-			System.out.println(s);
-			System.out.println("Salgo del try");
-			return s;
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
 		}
