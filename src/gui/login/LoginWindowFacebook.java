@@ -1,4 +1,4 @@
-package gui;
+package gui.login;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 
 import controller.Controller;
 import dto.DTOUsuario;
+import gui.booking.Fly;
 
 public class LoginWindowFacebook extends JFrame {
 

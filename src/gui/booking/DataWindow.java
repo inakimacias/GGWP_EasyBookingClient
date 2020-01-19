@@ -1,4 +1,4 @@
-package gui;
+package gui.booking;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import dto.DTOUsuario;
 import dto.DTOVuelo;
+import gui.pay.PayWindow;
 
 import javax.swing.JTextField;
 

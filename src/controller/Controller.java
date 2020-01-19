@@ -18,6 +18,10 @@ public class Controller {
 		new InitialWindow(this);
 	}
 	
+	public static void main(String[] args)throws RemoteException {
+    	new Controller(args);
+	}
+
 	public DTOUsuario login(String email, String password, String tipo) {
 		try {
 			return this.serviceLocator.getService().login(email, password, tipo);

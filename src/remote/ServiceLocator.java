@@ -15,7 +15,7 @@ public class ServiceLocator {
 			String URL = "//" + args[0] + ":" + args[1] + "/" + args[2];
 			this.service = (IEasyBookingManager) Naming.lookup(URL);
 		} catch (Exception ex) {
-			System.err.println("# Error locating remote fa�ade: " + ex);
+			System.err.println("# Error locating remote facade: " + ex);
 		}		
 	}
 

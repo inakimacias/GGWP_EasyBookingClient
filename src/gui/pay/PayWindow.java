@@ -1,4 +1,4 @@
-package gui;
+package gui.pay;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,18 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.Controller;
+import dto.DTOUsuario;
+import dto.DTOVuelo;
+import gui.booking.DataWindow;
 
 
 
-public class RegisterWindow extends JFrame {
+public class PayWindow extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Controller controlador;
 	
 
 
@@ -36,7 +37,7 @@ public class RegisterWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterWindow() {
+	public PayWindow(DTOUsuario usuario,DTOVuelo vuelo, String nombres, String tipo) {
 		
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -52,12 +53,12 @@ public class RegisterWindow extends JFrame {
 		
 
 		
-		JButton buttonGoogle = new JButton("GOOGLE");
-		buttonGoogle.addActionListener(new ActionListener() {
+		JButton buttonPaypal = new JButton("Paypal");
+		buttonPaypal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				RegisterWindowGoogle go = new RegisterWindowGoogle();
-				go.setVisible(true);
+				PaypalWindow pal = new PaypalWindow(usuario,vuelo, nombres, tipo);
+				pal.setVisible(true);
 				closeWin();
 				
 				
@@ -65,17 +66,17 @@ public class RegisterWindow extends JFrame {
 
 			
 		});
-		buttonGoogle.setForeground(SystemColor.activeCaption);
-		buttonGoogle.setForeground(new Color(0, 102, 153));
-		buttonGoogle.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		buttonGoogle.setBounds(86, 132, 219, 136);
-		contentPane.add(buttonGoogle);
+		buttonPaypal.setForeground(SystemColor.activeCaption);
+		buttonPaypal.setForeground(new Color(0, 102, 153));
+		buttonPaypal.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonPaypal.setBounds(86, 132, 219, 136);
+		contentPane.add(buttonPaypal);
 		
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InitialWindow ini = new InitialWindow(controlador);
-				ini.setVisible(true);
+				DataWindow dat = new DataWindow(usuario,vuelo,tipo);
+				dat.setVisible(true);
 				closeWin();
 			}
 		});
@@ -85,25 +86,22 @@ public class RegisterWindow extends JFrame {
 		buttonAtras.setBounds(15, 366, 139, 29);
 		contentPane.add(buttonAtras);
 		
-		JButton buttonFacebook = new JButton("FACEBOOK");
-		buttonFacebook.setForeground(SystemColor.activeCaption);
-		buttonFacebook.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		buttonFacebook.setBounds(360, 132, 219, 136);
-		buttonFacebook.addActionListener(new ActionListener() {
+		JButton buttonEB = new JButton("Entidad Bancaria");
+		buttonEB.setForeground(SystemColor.activeCaption);
+		buttonEB.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonEB.setBounds(360, 132, 219, 136);
+		buttonEB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				RegisterWindowFacebook face = new RegisterWindowFacebook();
-				face.setVisible(true);
-				closeWin();
-				
-				
+				EBWindow eb = new EBWindow(usuario,vuelo,nombres,tipo);
+				eb.setVisible(true);
+				closeWin();	
 			}
-
 			
 		});
-		contentPane.add(buttonFacebook);
+		contentPane.add(buttonEB);
 		
-		JLabel lblSeleccionaCmoQuieres = new JLabel("Selecciona c\u00F3mo quieres registrarte:");
+		JLabel lblSeleccionaCmoQuieres = new JLabel("Seleccione el m\u00E9todo de pago deseado:");
 		lblSeleccionaCmoQuieres.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		lblSeleccionaCmoQuieres.setBounds(43, 43, 475, 47);
 		contentPane.add(lblSeleccionaCmoQuieres);

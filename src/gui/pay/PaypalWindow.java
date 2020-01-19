@@ -1,4 +1,4 @@
-package gui;
+package gui.pay;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

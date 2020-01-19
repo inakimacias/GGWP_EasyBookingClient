@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.Controller;
+import gui.login.LoginWindow;
+import gui.register.RegisterWindow;
 
 public class InitialWindow extends JFrame {
 
