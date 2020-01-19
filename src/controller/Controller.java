@@ -1,12 +1,12 @@
 package controller;
 
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.ArrayList;
 
+import dto.DTOInformePago;
+import dto.DTOReserva;
 import dto.DTOUsuario;
 import dto.DTOVuelo;
-import gui.InitialWindow;
-import remote.ServiceLocator;
 
 public class Controller {
 	
@@ -15,23 +15,24 @@ public class Controller {
 	public Controller(String[] args) throws RemoteException {
 		serviceLocator = new ServiceLocator();
 		serviceLocator.setService(args);
-		new InitialWindow(this);
 	}
 	
 	public static void main(String[] args)throws RemoteException {
+		System.out.println("Se va a crear un controller");
     	new Controller(args);
 	}
 
 	public DTOUsuario login(String email, String password, String tipo) {
+		DTOUsuario u = null;
 		try {
-			return this.serviceLocator.getService().login(email, password, tipo);
+			u = this.serviceLocator.getService().login(email, password, tipo);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
-			return null;
 		}
+		return u;
 	}
 	
-	public List<DTOVuelo> buscarVuelo(String origen, String destino) {
+	public ArrayList<DTOVuelo> buscarVuelo(String origen, String destino) {
 		try {
 			return this.serviceLocator.getService().buscarVuelo(origen, destino);
 		} catch (RemoteException e) {
@@ -40,21 +41,41 @@ public class Controller {
 		}
 	}
 	
-	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipo,String metodo) {
+	public void reservar(DTOUsuario usuario, DTOVuelo vuelo, String nombres,String tipoBanco,String idCuenta) {
 		try {
-			this.serviceLocator.getService().reservar(usuario, vuelo, nombres, tipo, metodo);
+			this.serviceLocator.getService().reservar(usuario, vuelo, nombres, tipoBanco, idCuenta);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
 		}
 	}
 	
-	public boolean registarse(String usuario, String contraseña, String tipo) {
+	public String registarse(String usuario, String contrasena, String tipo) {
+		String s = "hi";
 		try {
-			return this.serviceLocator.getService().registrarse(usuario, contraseña, tipo);
+			s = this.serviceLocator.getService().registrarse(usuario, contrasena, tipo);
 		} catch (RemoteException e) {
 			System.err.println("# Error during login: " + e);
-			return false;
 		}
+		return s;
 	}
 	
+	public ArrayList<DTOReserva> buscarReservas(DTOUsuario usuario){
+		ArrayList<DTOReserva> adtor = null;
+		try {
+			adtor = this.serviceLocator.getService().buscarReservas(usuario);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+		}
+		return adtor;
+	}
+	
+	public DTOInformePago buscarInforme(DTOReserva reserva) {
+		DTOInformePago i = null;
+		try {
+			i = this.serviceLocator.getService().buscarInforme(reserva);
+		} catch (RemoteException e) {
+			System.err.println("# Error during login: " + e);
+		}
+		return i;
+	}
 }

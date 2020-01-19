@@ -1,6 +1,8 @@
-package remote;
+package controller;
 
 import java.rmi.Naming;
+
+import remote.IEasyBookingManager;
 
 public class ServiceLocator {
 	
