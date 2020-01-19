@@ -31,9 +31,9 @@
 	<target name="client" depends="1.compile"  description="Runs Client program">
 		<java classname="controller.Controller" classpathref="full.classpath" fork="true">
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
-        	<arg value="${rmiregistry.IP}"/> 
-	 		<arg value="${rmiregistry.port}"/> 
-			<arg value="${server.Name1}"/> 
+        	<arg value="${server.IP}"/> 
+	 		<arg value="${server.port}"/> 
+			<arg value="${server.Name}"/> 
         </java>
     </target>
 </project>
