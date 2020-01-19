@@ -93,15 +93,17 @@ public class LoginWindowFacebook extends JFrame {
 				DTOUsuario usuario = null;
 				
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+				try {
+					usuario = controlador.login(labelDNI.getText(), password, "facebook");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
+				}
 				
-				usuario = controlador.login(labelDNI.getText(), password, "facebook");
 				
 				if(usuario != null) {
 					Fly main = new Fly(usuario, "facebook");
 					main.setVisible(true);
 					closeWin();
-				}{
-					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
 				}
 			}
 		});

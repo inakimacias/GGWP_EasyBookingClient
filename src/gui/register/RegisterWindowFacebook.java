@@ -89,16 +89,16 @@ public class RegisterWindowFacebook extends JFrame {
 
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
 
-				if(controlador.registarse(textFielUsuario.getText(), password, "facebook")) {
-					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-					InitialWindow main = new InitialWindow(controlador);
-					main.setVisible(true);
-					closeWin();
-				} else {
+				try {
+					controlador.registarse(textFielUsuario.getText(), password, "facebook");
+				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
-						
 
+				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
+				InitialWindow main = new InitialWindow(controlador);
+				main.setVisible(true);
+				closeWin();
 			}
 		});
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 19));

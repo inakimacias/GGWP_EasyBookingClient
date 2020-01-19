@@ -91,15 +91,17 @@ public class LoginWindowGoogle extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DTOUsuario usuario = null;
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				usuario = controlador.login(labelDNI.getText(), password, "google");
-
+				try {
+					usuario = controlador.login(labelDNI.getText(), password, "google");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
+				}
 				if(usuario != null) {
 					Fly main = new Fly(usuario,"google");
 					main.setVisible(true);
 					closeWin();
-				}{
-					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
-				}}
+				}
+			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnEntrar.setForeground(new Color(0, 102, 153));

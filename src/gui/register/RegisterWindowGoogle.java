@@ -87,14 +87,16 @@ public class RegisterWindowGoogle extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
 				
-				if(controlador.registarse(textFieldUsuario.getText(), password, "google")) {
-					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-					InitialWindow main = new InitialWindow(controlador);
-					main.setVisible(true);
-					closeWin();
-				} else {
+				try {
+					controlador.registarse(textFieldUsuario.getText(), password, "google");
+				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
+				
+				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
+				InitialWindow main = new InitialWindow(controlador);
+				main.setVisible(true);
+				closeWin();	
 
 			}
 		});

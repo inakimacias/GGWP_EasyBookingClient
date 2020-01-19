@@ -91,8 +91,12 @@ public class EBWindow extends JFrame {
 
 		btnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					controlador.reservar(usuario,vuelo,nombres, tipo,"entidadbancaria");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(new Frame(), "Reserva fallida");
+				}
 				
-				controlador.reservar(usuario,vuelo,nombres, tipo,"entidadbancaria");
 				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");
 				
 

@@ -92,8 +92,11 @@ public class PaypalWindow extends JFrame {
 
 		btnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
-				
-				controlador.reservar(usuario,vuelo,nombres,tipo,"paypal");
+				try {
+					controlador.reservar(usuario,vuelo,nombres,tipo,"paypal");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(new Frame(), "Reserva fallida");	
+				}
 				JOptionPane.showMessageDialog(new Frame(), "Reserva realizada con exito");		
 
 			}
