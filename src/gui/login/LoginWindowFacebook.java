@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 import controller.Controller;
-import dto.DTOUsuario;
 import gui.booking.Fly;
 
 public class LoginWindowFacebook extends JFrame {
@@ -34,8 +33,9 @@ public class LoginWindowFacebook extends JFrame {
 		this.dispose();	
 	}
 
-	public LoginWindowFacebook() {
+	public LoginWindowFacebook(Controller controller) {
 
+		this.controlador=controller;
 		setBackground(new Color(0, 0, 255));
 		setResizable(false);
 		setSize(350,450);
@@ -89,21 +89,15 @@ public class LoginWindowFacebook extends JFrame {
 
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				DTOUsuario usuario = null;
-				
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-				try {
-					usuario = controlador.login(labelDNI.getText(), password, "facebook");
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
-				}
-				
-				
-				if(usuario != null) {
-					Fly main = new Fly(usuario, "facebook");
+				controlador.setUsuario(controlador.login(textFieldDNI.getText(), password, "facebook"));
+
+				if(controlador.getUsuario() != null) {
+					Fly main = new Fly(controlador);
 					main.setVisible(true);
 					closeWin();
+				}else{
+					JOptionPane.showMessageDialog(new Frame(), "Usuario no valido");
 				}
 			}
 		});
@@ -115,7 +109,7 @@ public class LoginWindowFacebook extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginWindow log = new LoginWindow();
+				LoginWindow log = new LoginWindow(controlador);
 				log.setVisible(true);
 				closeWin();
 			}

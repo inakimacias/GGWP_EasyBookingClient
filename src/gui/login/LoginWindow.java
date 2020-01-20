@@ -25,8 +25,9 @@ public class LoginWindow extends JFrame {
 		this.dispose();
 	}
 	
-	public LoginWindow() {
+	public LoginWindow(Controller controller) {
 
+		this.controlador=controller;
 		setResizable(false);
 		setSize(680,450);
 		setLocationRelativeTo(null);
@@ -42,7 +43,7 @@ public class LoginWindow extends JFrame {
 		JButton buttonGoogle = new JButton("GOOGLE");
 		buttonGoogle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginWindowGoogle go = new LoginWindowGoogle();
+				LoginWindowGoogle go = new LoginWindowGoogle(controlador);
 				go.setVisible(true);
 				closeWin();
 			}
@@ -73,7 +74,7 @@ public class LoginWindow extends JFrame {
 		buttonFacebook.setBounds(360, 132, 219, 136);
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginWindowFacebook fa = new LoginWindowFacebook();
+				LoginWindowFacebook fa = new LoginWindowFacebook(controlador);
 				fa.setVisible(true);
 				closeWin();
 			}

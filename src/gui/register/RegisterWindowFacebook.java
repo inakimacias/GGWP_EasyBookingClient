@@ -31,8 +31,9 @@ public class RegisterWindowFacebook extends JFrame {
 		
 	}
 
-	public RegisterWindowFacebook() {
+	public RegisterWindowFacebook(Controller controller) {
 
+		this.controlador=controller;
 		setBackground(new Color(0, 0, 255));
 		setResizable(false);
 		setSize(350,450);
@@ -83,35 +84,25 @@ public class RegisterWindowFacebook extends JFrame {
 		contentPane.add(passwordField);
 
 		JButton btnRegister = new JButton("Registrarse");
-
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				String email = textFielUsuario.getText();
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-<<<<<<< HEAD
-
-				try {
-					controlador.registarse(textFielUsuario.getText(), password, "facebook");
-				} catch (Exception e2) {
-=======
+				String authType = "facebook";
 				
-				String s = controlador.registarse(textFielUsuario.getText(), password, "facebook");
+				System.out.println(email+";"+password+";"+authType);
+				
+				String s = controlador.registrarse(email,password,authType);
 				System.out.println(s);
 				
-				if(s.split(";")[0]=="true") {
+				if(s.split(";")[0].equals("true")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
 					closeWin();
 				} else {
->>>>>>> branch 'master' of https://github.com/inakimacias/GGWP_EasyBookingClient.git
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
-
-				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-				InitialWindow main = new InitialWindow(controlador);
-				main.setVisible(true);
-				closeWin();
 			}
 		});
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -122,7 +113,7 @@ public class RegisterWindowFacebook extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			RegisterWindow reg = new RegisterWindow();
+			RegisterWindow reg = new RegisterWindow(controlador);
 			reg.setVisible(true);
 				closeWin();
 			}

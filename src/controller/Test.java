@@ -9,7 +9,9 @@ import dto.DTOUsuario;
 import dto.DTOVuelo;
 
 public class Test {
-
+	//NOTA: COMENTAR LINEAS 20 Y 21 DE controller.Controller ANTES DE EJECUTAR
+	//NOTA: COMENTAR LINEAS 20 Y 21 DE controller.Controller ANTES DE EJECUTAR
+	//NOTA: COMENTAR LINEAS 20 Y 21 DE controller.Controller ANTES DE EJECUTAR
 	public static void main(String[] args) throws RemoteException{
 		System.out.println("Puertos:");
 		System.out.println(args[0]);
@@ -20,7 +22,7 @@ public class Test {
 		Controller c = new Controller(args);
 		
 		System.out.println("Registrando usuario:");
-		String b = c.registarse("ruben@gmail.com", "elRuben", "google");
+		String b = c.registrarse("ruben@gmail.com", "elRuben", "google");
 		System.out.println(b);
 		System.out.println(" ");
 		

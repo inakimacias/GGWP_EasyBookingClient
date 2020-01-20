@@ -31,7 +31,6 @@ public class InitialWindow extends JFrame {
 		this.controlador = controller;
 		initComponents();	
 		this.setVisible(true);
-		
 	}
 	
 	public void initComponents() {
@@ -57,7 +56,7 @@ public class InitialWindow extends JFrame {
 		JButton buttonEntrar = new JButton("Entrar");
 		buttonEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginWindow log = new LoginWindow();
+				LoginWindow log = new LoginWindow(controlador);
 				log.setVisible(true);
 				closeWin();
 			}
@@ -73,7 +72,7 @@ public class InitialWindow extends JFrame {
 		JButton buttonRegistrarse = new JButton("Registarse");
 		buttonRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegisterWindow reg = new RegisterWindow();
+				RegisterWindow reg = new RegisterWindow(controlador);
 				reg.setVisible(true);
 				closeWin();
 			}
@@ -88,13 +87,6 @@ public class InitialWindow extends JFrame {
 		lblSeleccionaCmoQuieres.setBounds(40, 134, 500, 47);
 		contentPane.add(lblSeleccionaCmoQuieres);
 
-	}
-	
-	public Controller getController() {
-		return controlador;
-	}
-	public void setController(Controller controlador) {
-		this.controlador = controlador;
 	}
 	
 }

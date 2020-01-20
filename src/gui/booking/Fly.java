@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
-import dto.DTOUsuario;
+import dto.DTOReserva;
 import dto.DTOVuelo;
 
 import javax.swing.JTable;
@@ -50,8 +50,9 @@ public class Fly extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fly(DTOUsuario usuario,String tipo) {
+	public Fly(Controller controller) {
 		
+		this.controlador=controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(805,500);
@@ -141,12 +142,9 @@ public class Fly extends JFrame {
 				vuelos = controlador.buscarVuelo(textOrigen.getText(), textDestino.getText());
 				
 				for (DTOVuelo vuelo : vuelos) {
-					if(vuelos.size()!=0 && vuelo.getAeropuertoOrigen().equals(textOrigen.getText()) && vuelo.getAeropuertoDestino().equals(textDestino.getText()) ){
-						for(int i = 0; i<vuelos.size();i++){
-							cargarVueloEnTabla(vuelos.get(i));
-						}
-					}
-					else{
+					if(vuelo.getAeropuertoOrigen().equals(textOrigen.getText()) && vuelo.getAeropuertoDestino().equals(textDestino.getText()) ){
+							cargarVueloEnTabla(vuelo);
+					}else{
 						JOptionPane.showMessageDialog(new Frame(), "No hay vuelos disponibles. ");
 					}
 				}
@@ -169,7 +167,7 @@ public class Fly extends JFrame {
 				vuelo.setAsientosVacantes((Integer)table.getValueAt(table.getSelectedRow(), 6));
 				vuelo.setAerolinea((String)table.getValueAt(table.getSelectedRow(), 7));
 				
-				DataWindow dataW = new DataWindow(usuario,vuelo,tipo);
+				DataWindow dataW = new DataWindow(controlador,vuelo);
 				dataW.setVisible(true);
 				closeWin();
 			}	
@@ -177,16 +175,24 @@ public class Fly extends JFrame {
 		contentPane.add(btnReserva);
 		
 		JButton reserButton = new JButton("Ver mis reservas");
-		reserButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		reserButton.setBounds(74, 148, 160, 29);
-		contentPane.add(reserButton);
-		
+        reserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.out.println(" ");
+            	System.out.println("Visualizando Reservas del usuario: "+controlador.getUsuario().getEmail());
+        		ArrayList<DTOReserva> reservas = controlador.buscarReservas(controlador.getUsuario());
+        		for(int i = 0; i<reservas.size(); i++) {
+        			System.out.println(" ");
+        			System.out.println("Reserva: "+reservas.get(i).toString());
+        			System.out.println("El informe de pago asociado a esta reserva es: "+controlador.buscarInforme(reservas.get(i)).toString());
+        		}
+        		System.out.println(" ");
+            }
+        });
+        reserButton.setBounds(74, 148, 160, 29);
+        contentPane.add(reserButton);
 	}
+	
+	
 	
 	private void cargarVueloEnTabla(DTOVuelo a){ // Carga los datos en la tabla
         modelo = (DefaultTableModel)table.getModel();
@@ -211,4 +217,5 @@ public class Fly extends JFrame {
 	       
 		}
 	}
+	
 }

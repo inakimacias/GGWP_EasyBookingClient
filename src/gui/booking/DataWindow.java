@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dto.DTOUsuario;
+import controller.Controller;
 import dto.DTOVuelo;
 import gui.pay.PayWindow;
 
@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 public class DataWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	public Controller controlador;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -34,8 +35,9 @@ public class DataWindow extends JFrame {
 		this.dispose();
 	}
 	
-	public DataWindow(DTOUsuario usuario, DTOVuelo vuelo,String tipo) {
+	public DataWindow(Controller controller, DTOVuelo vuelo) {
 		
+		this.controlador=controller;
 		setTitle("EasyBooking");
 		setResizable(false);
 		setSize(680,450);
@@ -51,7 +53,7 @@ public class DataWindow extends JFrame {
 		JButton buttonAtras = new JButton("Atr\u00E1s");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fly fly = new Fly(usuario,tipo);
+				Fly fly = new Fly(controlador);
 				fly.setVisible(true);
 				closeWin();
 			}
@@ -139,7 +141,7 @@ public class DataWindow extends JFrame {
 							}
 						}
 					}
-					PayWindow pay = new PayWindow(usuario,vuelo,nombres,tipo);
+					PayWindow pay = new PayWindow(controlador,vuelo,nombres);
 					pay.setVisible(true);
 					closeWin();
 				}

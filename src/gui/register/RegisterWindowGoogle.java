@@ -14,7 +14,6 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
-
 import controller.Controller;
 import gui.InitialWindow;
 
@@ -31,8 +30,9 @@ public class RegisterWindowGoogle extends JFrame {
 	}
 
 
-	public RegisterWindowGoogle() {
+	public RegisterWindowGoogle(Controller controller) {
 
+		this.controlador=controller;
 		setBackground(new Color(0, 0, 255));
 		setSize(350,450);
 		setResizable(false);
@@ -85,35 +85,23 @@ public class RegisterWindowGoogle extends JFrame {
 		JButton btnRegister = new JButton("Registrarse");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String email = textFieldUsuario.getText();
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
-<<<<<<< HEAD
+				String authType = "google";
 				
-				try {
-					controlador.registarse(textFieldUsuario.getText(), password, "google");
-				} catch (Exception e2) {
-=======
-				System.out.println(password);
-				String s = controlador.registarse(textFieldUsuario.getText(), password, "google");
+				String s = controlador.registrarse(email,password,authType);
 				System.out.println(s);
-				if(s.split(";")[0]=="true") {
-					System.out.println("HOLA");
+				
+				if(s.split(";")[0].equals("true")) {
 					JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
 					InitialWindow main = new InitialWindow(controlador);
 					main.setVisible(true);
 					closeWin();
 				} else {
->>>>>>> branch 'master' of https://github.com/inakimacias/GGWP_EasyBookingClient.git
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
-				
-				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
-				InitialWindow main = new InitialWindow(controlador);
-				main.setVisible(true);
-				closeWin();	
-
 			}
 		});
-		
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnRegister.setForeground(new Color(0, 102, 153));
 		btnRegister.setBounds(52, 306, 128, 29);
@@ -122,7 +110,7 @@ public class RegisterWindowGoogle extends JFrame {
 		JButton buttonAtras = new JButton("Atras");
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			RegisterWindow reg = new RegisterWindow();
+			RegisterWindow reg = new RegisterWindow(controlador);
 			reg.setVisible(true);
 				closeWin();
 			}

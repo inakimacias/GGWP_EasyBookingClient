@@ -27,7 +27,8 @@ public class RegisterWindow extends JFrame {
 		this.dispose();
 	}
 	
-	public RegisterWindow() {
+	public RegisterWindow(Controller controller) {
+		this.controlador=controller;
 		
 		setTitle("EasyBooking");
 		setResizable(false);
@@ -44,7 +45,7 @@ public class RegisterWindow extends JFrame {
 		JButton buttonGoogle = new JButton("GOOGLE");
 		buttonGoogle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegisterWindowGoogle go = new RegisterWindowGoogle();
+				RegisterWindowGoogle go = new RegisterWindowGoogle(controlador);
 				go.setVisible(true);
 				closeWin();
 			}
@@ -75,7 +76,7 @@ public class RegisterWindow extends JFrame {
 		buttonFacebook.setBounds(360, 132, 219, 136);
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegisterWindowFacebook face = new RegisterWindowFacebook();
+				RegisterWindowFacebook face = new RegisterWindowFacebook(controlador);
 				face.setVisible(true);
 				closeWin();
 			}
