@@ -86,6 +86,12 @@ public class RegisterWindowGoogle extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+<<<<<<< HEAD
+				
+				try {
+					controlador.registarse(textFieldUsuario.getText(), password, "google");
+				} catch (Exception e2) {
+=======
 				System.out.println(password);
 				String s = controlador.registarse(textFieldUsuario.getText(), password, "google");
 				System.out.println(s);
@@ -96,8 +102,14 @@ public class RegisterWindowGoogle extends JFrame {
 					main.setVisible(true);
 					closeWin();
 				} else {
+>>>>>>> branch 'master' of https://github.com/inakimacias/GGWP_EasyBookingClient.git
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
+				
+				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
+				InitialWindow main = new InitialWindow(controlador);
+				main.setVisible(true);
+				closeWin();	
 
 			}
 		});

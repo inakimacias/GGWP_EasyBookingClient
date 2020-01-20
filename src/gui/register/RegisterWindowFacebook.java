@@ -88,6 +88,12 @@ public class RegisterWindowFacebook extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String password = new StringBuilder().append(passwordField.getPassword()).toString();
+<<<<<<< HEAD
+
+				try {
+					controlador.registarse(textFielUsuario.getText(), password, "facebook");
+				} catch (Exception e2) {
+=======
 				
 				String s = controlador.registarse(textFielUsuario.getText(), password, "facebook");
 				System.out.println(s);
@@ -98,10 +104,14 @@ public class RegisterWindowFacebook extends JFrame {
 					main.setVisible(true);
 					closeWin();
 				} else {
+>>>>>>> branch 'master' of https://github.com/inakimacias/GGWP_EasyBookingClient.git
 					JOptionPane.showMessageDialog(new Frame(), "Registrado fallido");
 				}
-						
 
+				JOptionPane.showMessageDialog(new Frame(), "Registrado con exito");
+				InitialWindow main = new InitialWindow(controlador);
+				main.setVisible(true);
+				closeWin();
 			}
 		});
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 19));
