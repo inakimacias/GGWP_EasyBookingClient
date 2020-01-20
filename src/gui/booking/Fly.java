@@ -176,6 +176,16 @@ public class Fly extends JFrame {
 		});
 		contentPane.add(btnReserva);
 		
+		JButton reserButton = new JButton("Ver mis reservas");
+		reserButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		reserButton.setBounds(74, 148, 160, 29);
+		contentPane.add(reserButton);
+		
 	}
 	
 	private void cargarVueloEnTabla(DTOVuelo a){ // Carga los datos en la tabla
@@ -201,5 +211,4 @@ public class Fly extends JFrame {
 	       
 		}
 	}
-	
 }
